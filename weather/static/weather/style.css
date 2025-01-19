@@ -232,3 +232,14 @@ button:hover {
     text-transform: capitalize;
     margin-bottom: 20px;
 }
+
+/* Style for the reset button */
+button.reset {
+    background: var(--danger-color);
+    margin-left: 10px;
+}
+
+button.reset:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+}
