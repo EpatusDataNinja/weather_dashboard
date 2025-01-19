@@ -1,0 +1,26 @@
+# Exclude environment files
+.env
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment folder
+venv/
+env/
+
+# Django static and media files
+/staticfiles/
+/media/
+
+# Database files
+*.sqlite3
+
+# IDE configuration files
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
