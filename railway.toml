@@ -1,6 +1,6 @@
 [build]
 builder = "NIXPACKS"
-buildCommand = "python -m pip install --upgrade pip && pip install -r requirements.txt && python manage.py collectstatic --noinput --clear"
+buildCommand = "python -m pip install --upgrade pip && pip install -r requirements.txt && python manage.py collectstatic --noinput --clear --settings=weather_dashboard.settings"
 
 [deploy]
 startCommand = "python manage.py migrate && gunicorn weather_dashboard.wsgi:application --bind 0.0.0.0:$PORT"
