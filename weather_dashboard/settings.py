@@ -27,7 +27,7 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-jb9_!!tj6g+ms$bnc1=d^kiijb@%_i5&c!a=6eero-enx$zx^s')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = False
 
 ALLOWED_HOSTS = ['weatherdashboard-production-a05e.up.railway.app', 'localhost', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://weatherdashboard-production-a05e.up.railway.app']
@@ -124,14 +124,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# WhiteNoise configuration
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# Add these new settings for WhiteNoise
+WHITENOISE_MANIFEST_STRICT = False
+WHITENOISE_USE_FINDERS = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
