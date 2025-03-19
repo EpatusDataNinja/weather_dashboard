@@ -147,4 +147,4 @@ document.querySelectorAll('.weather-card').forEach(card => {
     card.addEventListener('mouseout', function() {
         this.style.transform = 'translateY(0)';
     });
-});
+}); 
