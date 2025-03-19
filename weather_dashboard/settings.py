@@ -23,12 +23,14 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-jb9_!!tj6g+ms$bnc1=d^kiijb@%_i5&c!a=6eero-enx$zx^s'
+
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-jb9_!!tj6g+ms$bnc1=d^kiijb@%_i5&c!a=6eero-enx$zx^s')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']  # For development only, change this in production
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app', 'https://*.render.com']
 
 
 # Application definition
@@ -124,7 +126,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'weather/static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

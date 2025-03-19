@@ -15,10 +15,10 @@ def get_weather(request):
         return JsonResponse({'error': 'Please enter a valid city name.'}, status=400)
 
     api_key = settings.WEATHER_API_KEY  # Use the API key from settings
-    url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
+    url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
 
     try:
-        response = requests.get(url)
+        response = requests.get(url, timeout=10)  # Add a 10-second timeout
         # Check if the API call was successful
         response.raise_for_status()  # Raise an exception for 4xx/5xx responses
         data = response.json()

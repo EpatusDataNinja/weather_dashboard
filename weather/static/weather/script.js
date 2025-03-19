@@ -68,12 +68,12 @@ function updateWeatherUI(data) {
         return;
     }
 
-    // Update weather icon with new animated icons
+    // Update weather icon
     const iconCode = data.weather.icon;
     const weatherIconContainer = document.getElementById('weatherIcon');
     weatherIconContainer.innerHTML = weatherIconMap[iconCode] || '<i class="wi wi-day-sunny"></i>';
 
-    // Update temperature
+    // Update temperature with rounding
     const temp = Math.round(data.temp);
     document.getElementById('temperature').textContent = `${temp}°C`;
 
@@ -82,14 +82,14 @@ function updateWeatherUI(data) {
     document.getElementById('description').textContent = 
         description.charAt(0).toUpperCase() + description.slice(1);
 
-    // Update weather details
+    // Update weather details with rounding where needed
     document.getElementById('feelsLike').textContent = `${Math.round(data.feels_like)}°C`;
     document.getElementById('humidity').textContent = `${data.humidity}%`;
     document.getElementById('windSpeed').textContent = `${Math.round(data.wind_speed * 3.6)} km/h`;
     document.getElementById('pressure').textContent = `${data.pressure} hPa`;
 
     // Show weather info with animation
-    weatherInfo.style.display = 'grid';
+    weatherInfo.style.display = 'block';
     weatherInfo.style.opacity = '0';
     setTimeout(() => {
         weatherInfo.style.transition = 'opacity 0.5s ease-in-out';
@@ -106,9 +106,9 @@ function resetWeather() {
     weatherInfo.style.display = 'none';
     hideError();
 
-    // Reset the weather icon
+    // Reset the weather icon to default
     const weatherIconContainer = document.getElementById('weatherIcon');
-    weatherIconContainer.innerHTML = '<img src="https://signsanddisplays.files.wordpress.com/2011/06/weather-symbols-icons-clip-art.jpg" alt="Weather Icon">';
+    weatherIconContainer.innerHTML = '<i class="wi wi-day-sunny"></i>';
 
     // Reset all weather details
     document.getElementById('temperature').textContent = '';
