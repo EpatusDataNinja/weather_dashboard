@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os 
 from pathlib import Path
 from dotenv import load_dotenv
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,8 +30,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-jb9_!!tj6g+ms$bnc1=d^kiijb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']  # For development only, change this in production
-CSRF_TRUSTED_ORIGINS = ['https://*.railway.app', 'https://*.render.com']
+ALLOWED_HOSTS = ['*.railway.app', 'localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
 
 
 # Application definition
@@ -83,10 +84,10 @@ WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600
+    )
 }
 
 
